@@ -6,37 +6,39 @@ use \LlevaUno\Bancard\Core\Config;
 use \LlevaUno\Bancard\Core\HTTP;
 use \LlevaUno\Bancard\Core\Environments;
 use \LlevaUno\Bancard\Operations\Operations;
+use \LlevaUno\Bancard\Core\Exceptions;
 
 class PreAuthorization extends \LlevaUno\Bancard\Core\Request
 {
     private function validateData(array $data)
     {
+
+        if (count($data) != 5) {
+            throw new InvalidArgumentCountException("Invalid argument count (6 values are expected).");
+        }
+
         if (array_key_exists('shop_process_id', $data)) {
-            return false;
+            throw new \InvalidArgumentException("Shop process id not found [shop_process_id].");
         }
 
         if (array_key_exists('amount', $data)) {
-            return false;
+            throw new \InvalidArgumentException("Amount argument was not found [amount].");
         }
 
         if (array_key_exists('currency', $data)) {
-            return false;
-        }
-
-        if (array_key_exists('amount', $data)) {
-            return false;
+            throw new \InvalidArgumentException("Currency argument was not found [currency].");
         }
 
         if (array_key_exists('description', $data)) {
-            return false;
+            throw new \InvalidArgumentException("Description argment was not found [description].");
         }
 
         if (array_key_exists('additional_data', $data)) {
-            return false;
+            throw new \InvalidArgumentException("Additional data argument was not found [additional_data].");
         }
     }
 
-    public static function send(array $data, $environment = Environments::STAGING_URL)
+    public static function init(array $data, $environment = Environments::STAGING_URL)
     {
         # Instance.
         $self = new self;
@@ -56,7 +58,6 @@ class PreAuthorization extends \LlevaUno\Bancard\Core\Request
         $self->getToken('pre_authorization');
         # Create operation array.
         $self->makeOperationObject();
-        $self->post();
         return $self;
     }
 }

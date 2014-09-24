@@ -25,7 +25,7 @@ class Response
 
     public function get()
     {
-        return $this->response;
+        return $this->json();
     }
 
     public function json()

@@ -64,16 +64,23 @@ class Request
         $this->url = $this->environment . $this->path;
         $this->response_data = HTTP::post($this->url, $this->json());
 
-        if (!$this->reponse_data) {
-            return false;
+        if (!$this->response_data) {
+            
+            throw new InvalidHTTPDataException("No response data was found.");
         }
         
         $this->response = $this->response();
-
-        if ($this->reponse->status == "error") {
-            return false;
+        
+        if ($this->response->status == "error") {
+            $class = $this->response->message->key . "Exception";
+            if (class_exists("\\LlevaUno\\Bancard\\Core\\Exceptions\\" . $class)) {
+                throw new $class;
+            } else {
+                throw new Exception("Unknow exception raised");
+            }
         }
-        $this->redirect_to = $this->url . "?process_id=" . $this->response()->process_id;
+        
+        $this->redirect_to = $this->environment . Config::get("redirect_path") . "?process_id=" . $this->response()->process_id;
         return true;
     }
 
@@ -92,5 +99,9 @@ class Request
         return json_decode($this->response_data);
     }
 
-
+    public function send()
+    {
+        $this->post();
+        return $this;
+    }
 }

@@ -30,7 +30,7 @@ class Rollback extends \LlevaUno\Bancard\Core\Request
             $self->addData($key, $value);
         }
         # Generate token.
-        $self->getToken('pre_authorization_rollback');
+        $self->getToken('pre_authorization_rollback_confirm');
         # Create operation array.
         $self->makeOperationObject();
         $self->post();

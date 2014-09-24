@@ -19,8 +19,6 @@ class Token
         $this->data = $data;
         $this->make();
         $this->hash();
-        var_dump($this->unhashed_string);
-        var_dump($this->hash);
     }
 
     private function getPrivateKey()
@@ -47,13 +45,20 @@ class Token
         if ($this->type == "pre_authorization_confirm") {
             $this->unhashed_string .= $this->private_key;
             $this->unhashed_string .= $this->shop_process_id;
-            $this->unhashed_string .= "confirm";
+            $this->unhashed_string .= "pre-authorization-confirm";
         }
 
         if ($this->type == "pre_authorization_abort") {
             $this->unhashed_string .= $this->private_key;
             $this->unhashed_string .= $this->shop_process_id;
             $this->unhashed_string .= "pre-authorization-abort";
+        }
+        
+        if ($this->type == "pre_authorization_rollback_confirm") {
+            $this->unhashed_string .= $this->private_key;
+            $this->unhashed_string .= $this->shop_process_id;
+            $this->unhashed_string .= "rollback-confirm";
+            $this->unhashed_string .= "0.00";
         }
 
         if ($this->type == "pre_authorization_client_confirm") {

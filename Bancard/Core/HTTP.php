@@ -2,11 +2,10 @@
 
 namespace LlevaUno\Bancard\Core;
 
-class HTTP 
+class HTTP
 {
     public static function post($url, $data)
     {
-        var_dump($data);
         $curl = curl_init($url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_POST, true);
@@ -24,16 +23,7 @@ class HTTP
 
     public static function read()
     {
-        if ($_SERVER['REQUEST_METHOD'] != "POST") {
-            return false;
-        }
-
         $data = file_get_contents("php://input");
-
-        if (empty($data)) {
-            return false;
-        }
-
         return $data;
     }
 }

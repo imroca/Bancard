@@ -11,12 +11,16 @@ class Cancel extends \LlevaUno\Bancard\Core\Request
 {
     private function validateData(array $data)
     {
+        if (count($data) != 1) {
+            throw new InvalidArgumentCountException("Invalid argument count (Only 1 value is expected).");
+        }
+
         if (array_key_exists('shop_process_id', $data)) {
-            return false;
+            throw new \InvalidArgumentException("Shop process id not found [shop_process_id].");
         }
     }
 
-    public static function send(array $data, $environment = Environments::STAGING_URL)
+    public static function init(array $data, $environment = Environments::STAGING_URL)
     {
         # Instance.
         $self = new self;
@@ -33,7 +37,6 @@ class Cancel extends \LlevaUno\Bancard\Core\Request
         $self->getToken('pre_authorization_abort');
         # Create operation array.
         $self->makeOperationObject();
-        $self->post();
         return $self;
     }
 }
