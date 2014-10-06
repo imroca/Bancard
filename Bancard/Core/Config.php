@@ -9,6 +9,12 @@ class Config
     const RETURN_URL = "http://www.llevauno.com.py/bancard/test/preauthorization?confirm";
     const CANCEL_URL = "http://www.llevauno.com.py/bancard/cancel";
     const REDIRECT_PATH = "/payment/preauthorization";
+    
+    /**
+     *
+     * Get defined configuration constants.
+     *
+     */
 
     public static function get($key)
     {

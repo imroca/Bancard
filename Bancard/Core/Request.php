@@ -3,7 +3,14 @@
 namespace LlevaUno\Bancard\Core;
 
 use LlevaUno\Bancard\Core\Config;
+
 use Closure;
+
+/**
+ *
+ * Request class that handles all VPOS operations.
+ *   
+ **/    
 
 class Request
 {
@@ -24,11 +31,28 @@ class Request
 
     public $response;
 
+    /**
+     *
+     * Setup.
+     *
+     * @return void
+     *
+     **/
+     
     protected function __construct()
     {
         $this->getPublicKey();
     }
-
+    /**
+     *
+     * Get valid token for given operation type.
+     *
+     * @param $type Type of operation.
+     *
+     * @return void
+     *   
+     **/    
+    
     protected function getToken($type)
     {
         $this->token = Token::create(
@@ -37,16 +61,41 @@ class Request
             $this->data
         );
     }
-
+    
+    /**
+     *
+     * Get configured public key.
+     *
+     * @return void  
+     * 
+     **/
+     
     private function getPublicKey()
     {
         $this->public_key = Config::get("public_key");
     }
 
+    /**
+     *
+     * Fill data array with values that then will turn into a json.
+     *
+     * @return void
+     *   
+     **/
+
+
     public function addData($key, $value)
     {
         $this->data[$key] = $value;
     }
+    
+    /**
+     *
+     * Prapare operation object with expected structure.
+     *
+     * @return void   
+     *
+     **/
 
     protected function makeOperationObject()
     {
@@ -59,45 +108,80 @@ class Request
         }
     }
 
+    /**
+     *
+     * Prepare url and post data to Bancard configured enviroment url. 
+     * If successful sets up redirect url. 
+     * Raise exception on error.
+     *
+     * @return bool
+     *
+     **/
+
     protected function post()
     {
         $this->url = $this->environment . $this->path;
         $this->response_data = HTTP::post($this->url, $this->json());
 
         if (!$this->response_data) {
-            
-            throw new InvalidHTTPDataException("No response data was found.");
+            throw new \RuntimeException("No response data was found.");
         }
         
         $this->response = $this->response();
-        
         if ($this->response->status == "error") {
-            $class = $this->response->message->key . "Exception";
-            if (class_exists("\\LlevaUno\\Bancard\\Core\\Exceptions\\" . $class)) {
-                throw new $class;
-            } else {
-                throw new Exception("Unknow exception raised");
-            }
+            throw new \Exception("[" . $this->response->messages[0]->key . "] " . $this->response->messages[0]->dsc);
         }
         
         $this->redirect_to = $this->environment . Config::get("redirect_path") . "?process_id=" . $this->response()->process_id;
         return true;
     }
+    
+    /**
+     *
+     * Return opeartion object.
+     *
+     * @return object   
+     *
+     **/
 
     public function get()
     {
         return $this->operation;
     }
+    
+    /**
+     *
+     * Get json represetation of operation object.
+     *
+     * @return json   
+     *
+     **/
 
     public function json()
     {
         return json_encode($this->operation);
     }
+    
+    /**
+     *
+     * Return response object (stdClass).
+     *
+     * @return void   
+     *
+     **/
 
     public function response()
     {
         return json_decode($this->response_data);
     }
+    
+    /**
+     *
+     * Post data wrapper.
+     *
+     * @return void   
+     *
+     **/
 
     public function send()
     {

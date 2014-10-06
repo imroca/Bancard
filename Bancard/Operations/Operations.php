@@ -2,6 +2,12 @@
 
 namespace LlevaUno\Bancard\Operations;
 
+/**
+ *
+ * Operation class that stores operations url paths.
+ *
+ **/
+
 class Operations
 {
     const PREAUTHORIZATION_URL = "/vpos/api/0.3/preauthorizations";

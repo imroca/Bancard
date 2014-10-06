@@ -5,6 +5,12 @@ namespace LlevaUno\Bancard\Core;
 use LlevaUno\Bancard\Core\Config;
 use Closure;
 
+/**
+ *
+ * Response class that handles all confirmation responses for sent operations.
+ *   
+ **/
+
 class Response
 {
     private $token;
@@ -17,16 +23,41 @@ class Response
     public $public_key;
     public $operation;
     public $data = array();
+    
+    /**
+     *
+     * Get post data sent by VPOS.
+     *
+     * @return Response object
+     *
+     **/
 
     protected function read()
     {
         $this->response = HTTP::read();
+        return $this;
     }
+    
+    /**
+     *
+     * Return response object.
+     *
+     * @return string
+     *
+     **/
 
     public function get()
     {
-        return $this->json();
+        return $this->response;
     }
+    
+    /**
+     *
+     * Return representation of json 
+     *
+     * @return stdClass
+     *
+     **/
 
     public function json()
     {

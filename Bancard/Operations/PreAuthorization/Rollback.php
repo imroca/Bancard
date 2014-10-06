@@ -7,16 +7,43 @@ use \LlevaUno\Bancard\Core\HTTP;
 use \LlevaUno\Bancard\Core\Environments;
 use \LlevaUno\Bancard\Operations\Operations;
 
+/**
+ *
+ * Preauthorization rollback operation.
+ *
+ **/
+
 class Rollback extends \LlevaUno\Bancard\Core\Request
 {
+    
+    /**
+     *
+     * Validates data
+     *
+     * @return void
+     *
+     **/
+    
     private function validateData(array $data)
     {
-        if (array_key_exists('shop_process_id', $data)) {
-            return false;
+        if (count($data) != 1) {
+            throw new \InvalidArgumentException("Invalid argument count (1 values are expected).");
+        }
+        
+        if (!array_key_exists('shop_process_id', $data)) {
+            throw new \InvalidArgumentException("Shop process id not found [shop_process_id].");
         }
     }
 
-    public static function send(array $data, $environment = Environments::STAGING_URL)
+    /**
+     *
+     * Initialize object
+     *
+     * @return class
+     *
+     **/
+     
+    public static function init(array $data, $environment = Environments::STAGING_URL)
     {
         # Instance.
         $self = new self;

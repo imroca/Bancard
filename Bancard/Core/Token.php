@@ -2,6 +2,12 @@
 
 namespace LlevaUno\Bancard\Core;
 
+/**
+ *
+ * Token class for construction and handling tokens.
+ *   
+ **/
+
 class Token
 {
     private $type;
@@ -10,6 +16,12 @@ class Token
     private $data;
     private $unhashed_string = "";
     private $hash;
+    
+    /**
+     *
+     * Set data and hash.
+     *
+     **/
 
     private function __construct($type, $shop_process_id, $data)
     {
@@ -20,11 +32,23 @@ class Token
         $this->make();
         $this->hash();
     }
-
+    
+    /**
+     *
+     * Get configured private key.
+     *
+     **/
+     
     private function getPrivateKey()
     {
         $this->private_key = Config::get('private_key');
     }
+    
+    /**
+     *
+     * Construct token string for given operation type.
+     *
+     **/
 
     private function make()
     {
@@ -69,17 +93,39 @@ class Token
             $this->unhashed_string .= $this->data['currency'];
         }
     }
+    
+    /**
+     *
+     * MD5 hash of constructed hash.
+     *
+     **/
 
     private function hash()
     {
         $this->hash = md5($this->unhashed_string);
     }
+    
+    /**
+     *
+     * Create and return hash object.
+     *
+     * @return Token object
+     *
+     **/
 
     public static function create($type, $shop_process_id, $data = array())
     {
         $self = new self($type, $shop_process_id, $data);
         return $self;
     }
+    
+    /**
+     *
+     * Return hash string.
+     *
+     * @return string
+     *
+     **/
 
     public function get()
     {

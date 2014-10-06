@@ -2,6 +2,11 @@
 
 namespace LlevaUno\Bancard\Core;
 
+/**
+ *
+ * Define working environments.
+ *
+ **/
 
 class Environments
 {
