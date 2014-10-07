@@ -1,25 +1,28 @@
 <?php
 
-require_once('vendor/autoload.php');
-require_once(__DIR__ . '/../autoload.php');
+require_once(__DIR__ . '/../Bancard/autoload.php');
 
 $redis = new Redis();
-
 $redis->pconnect('127.0.0.1', 6379);
 
 $id = $redis->incr("LlevaUno:Bancard:shop_process_id");
 
 $data = [
     'shop_process_id'   => $id,
-    'amount'            => '1000.00',
+    'amount'            => $_POST['amount'],
     'currency'          => 'PYG',
-    'additional_data'   => 'Test additional data',
-    'description'       => 'Test description'
+    'additional_data'   => '',
+    'description'       => $_POST['description']
 ];
 
-$request = LlevaUno\Bancard\Operations\PreAuthorization\PreAuthorization::send($data);
+var_dump($data);
 
-var_dump($request->response());
+try {
+    $request = LlevaUno\Bancard\Operations\PreAuthorization\PreAuthorization::init($data)->send();
+} catch (Exception $e) {
+    die($e->getMessage());
+}
+
 
 $redis->hSet(
     "LlevaUno:Bancard:PreAuthorization:PreAuthorization:{$id}",
@@ -41,6 +44,8 @@ $redis->hSet(
 
 $redis->hSet(
     "LlevaUno:Bancard:PreAuthorization:PreAuthorization:{$id}",
-    "reponse",
-    $request->response()
+    "response",
+    json_encode($request->response)
 );
+
+var_dump($request->redirect_to);

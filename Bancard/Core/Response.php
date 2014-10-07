@@ -14,17 +14,8 @@ use Closure;
 
 class Response
 {
-    private $token;
-    private $shop_process_id;
     private $response;
 
-    protected $environment;
-    protected $url;
-
-    public $public_key;
-    public $operation;
-    public $data = array();
-    
     /**
      *
      * Get post data sent by VPOS.
@@ -33,7 +24,7 @@ class Response
      *
      **/
 
-    static public function read()
+    public static function read()
     {
         $self = new self;
         $self->response = HTTP::read();
