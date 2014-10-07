@@ -13,3 +13,32 @@ Implementacion en PHP para consumir el servicio de eCommerce de Bancard o VPOS.
 * Preautorizacion confirm.
 * Preautorizacion abort.
 * Preautorizacion confirm rollback.
+
+## Usage
+
+```php
+
+require_once(__DIR__ . '/../Bancard/autoload.php');
+
+$redis = new Redis();
+$redis->pconnect('127.0.0.1', 6379);
+
+$id = $redis->incr("LlevaUno:Bancard:shop_process_id");
+
+$data = [
+    'shop_process_id'   => $id,
+    'amount'            => $_POST['amount'],
+    'currency'          => 'PYG',
+    'additional_data'   => '',
+    'description'       => $_POST['description']
+];
+
+try {
+    $request = LlevaUno\Bancard\Operations\PreAuthorization\PreAuthorization::init($data)->send();
+} catch (Exception $e) {
+    die($e->getMessage());
+}
+
+var_dump($request);
+
+```
