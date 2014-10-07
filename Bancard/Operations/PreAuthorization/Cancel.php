@@ -30,7 +30,7 @@ class Cancel extends \LlevaUno\Bancard\Core\Request
             throw new \InvalidArgumentCountException("Invalid argument count (Only 1 value is expected).");
         }
 
-        if (array_key_exists('shop_process_id', $data)) {
+        if (!array_key_exists('shop_process_id', $data)) {
             throw new \InvalidArgumentException("Shop process id not found [shop_process_id].");
         }
     }

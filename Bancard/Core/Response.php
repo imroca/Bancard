@@ -3,6 +3,7 @@
 namespace LlevaUno\Bancard\Core;
 
 use LlevaUno\Bancard\Core\Config;
+use LlevaUno\Bancard\Core\HTTP;
 use Closure;
 
 /**
@@ -32,10 +33,11 @@ class Response
      *
      **/
 
-    protected function read()
+    static public function read()
     {
-        $this->response = HTTP::read();
-        return $this;
+        $self = new self;
+        $self->response = HTTP::read();
+        return $self;
     }
     
     /**

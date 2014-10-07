@@ -60,7 +60,6 @@ class Confirm extends \LlevaUno\Bancard\Core\Request
         $self->getToken('pre_authorization_confirm');
         # Create operation array.
         $self->makeOperationObject();
-        $self->post();
         return $self;
     }
 }

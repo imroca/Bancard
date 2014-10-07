@@ -128,11 +128,15 @@ class Request
         }
         
         $this->response = $this->response();
+        
         if ($this->response->status == "error") {
             throw new \Exception("[" . $this->response->messages[0]->key . "] " . $this->response->messages[0]->dsc);
         }
         
-        $this->redirect_to = $this->environment . Config::get("redirect_path") . "?process_id=" . $this->response()->process_id;
+        if(!empty($this->response()->process_id)) {
+            $this->redirect_to = $this->environment . Config::get("redirect_path") . "?process_id=" . $this->response()->process_id;    
+        }
+        
         return true;
     }
     
