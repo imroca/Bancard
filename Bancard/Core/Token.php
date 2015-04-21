@@ -52,14 +52,14 @@ class Token
 
     private function make()
     {
-        if ($this->type == "pre_authorization") {
+        if ($this->type == "pre_authorization" or $this->type == "single_buy") {
             $this->unhashed_string .= $this->private_key;
             $this->unhashed_string .= $this->shop_process_id;
             $this->unhashed_string .= $this->data['amount'];
             $this->unhashed_string .= $this->data['currency'];
         }
 
-        if ($this->type == "pre_authorization_rollback") {
+        if ($this->type == "pre_authorization_rollback" or $this->type == "single_buy_rollback") {
             $this->unhashed_string .= $this->private_key;
             $this->unhashed_string .= $this->shop_process_id;
             $this->unhashed_string .= "rollback";
