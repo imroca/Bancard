@@ -51,7 +51,7 @@ class PreAuthorization extends \LlevaUno\Bancard\Core\Request
             throw new \InvalidArgumentException("Additional data argument was not found [additional_data].");
         }
     }
-    
+
     /**
      *
      * Initialize object
@@ -59,19 +59,31 @@ class PreAuthorization extends \LlevaUno\Bancard\Core\Request
      * @return class
      *
      **/
-     
-    public static function init(array $data, $environment = Environments::STAGING_URL)
+
+    public static function init(array $data, array $option = array(), $environment = Environments::STAGING_URL)
     {
         # Instance.
         $self = new self;
         # Validate data.
         $self->validateData($data);
+
         # Set Enviroment.
         $self->environment = $environment;
         $self->path = Operations::PREAUTHORIZATION_URL;
+
         # Configure extra data.
-        $data['return_url'] = Config::get('return_url');
-        $data['cancel_url'] = Config::get('cancel_url');
+        if (isset($option['return_url']) and $option['return_url'] !== "") {
+            $data['return_url'] = $option['return_url'];
+        } else {
+            $data['return_url'] = Config::get('return_url');
+        }
+
+        if (isset($option['cancel_url']) and $option['cancel_url'] !== "") {
+            $data['cancel_url'] = $option['cancel_url'];
+        } else {
+            $data['cancel_url'] = Config::get('cancel_url');
+        }
+
         # Attach data.
         foreach ($data as $key => $value) {
             $self->addData($key, $value);
