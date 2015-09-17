@@ -1,6 +1,6 @@
 <?php
 
-namespace LlevaUno\Bancard\Operations;
+namespace Bancard\Bancard\Operations;
 
 /**
  *

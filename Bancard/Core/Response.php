@@ -1,15 +1,15 @@
 <?php
 
-namespace LlevaUno\Bancard\Core;
+namespace Bancard\Bancard\Core;
 
-use LlevaUno\Bancard\Core\Config;
-use LlevaUno\Bancard\Core\HTTP;
+use Bancard\Bancard\Core\Config;
+use Bancard\Bancard\Core\HTTP;
 use Closure;
 
 /**
  *
  * Response class that handles all confirmation responses for sent operations.
- *   
+ *
  **/
 
 class Response
@@ -30,7 +30,7 @@ class Response
         $self->response = HTTP::read();
         return $self;
     }
-    
+
     /**
      *
      * Return response object.
@@ -43,10 +43,10 @@ class Response
     {
         return $this->response;
     }
-    
+
     /**
      *
-     * Return representation of json 
+     * Return representation of json
      *
      * @return stdClass
      *

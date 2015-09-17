@@ -1,16 +1,16 @@
 <?php
 
-namespace LlevaUno\Bancard\Core;
+namespace Bancard\Bancard\Core;
 
-use LlevaUno\Bancard\Core\Config;
+use Bancard\Bancard\Core\Config;
 
 use Closure;
 
 /**
  *
  * Request class that handles all VPOS operations.
- *   
- **/    
+ *
+ **/
 
 class Request
 {
@@ -20,7 +20,7 @@ class Request
 
     protected $environment;
     protected $path;
-    
+
     public $url;
 
     public $redirect_to;
@@ -38,7 +38,7 @@ class Request
      * @return void
      *
      **/
-     
+
     protected function __construct()
     {
         $this->getPublicKey();
@@ -50,9 +50,9 @@ class Request
      * @param $type Type of operation.
      *
      * @return void
-     *   
-     **/    
-    
+     *
+     **/
+
     protected function getToken($type)
     {
         $this->token = Token::create(
@@ -61,15 +61,15 @@ class Request
             $this->data
         );
     }
-    
+
     /**
      *
      * Get configured public key.
      *
-     * @return void  
-     * 
+     * @return void
+     *
      **/
-     
+
     private function getPublicKey()
     {
         $this->public_key = Config::get("public_key");
@@ -80,7 +80,7 @@ class Request
      * Fill data array with values that then will turn into a json.
      *
      * @return void
-     *   
+     *
      **/
 
 
@@ -88,12 +88,12 @@ class Request
     {
         $this->data[$key] = $value;
     }
-    
+
     /**
      *
      * Prapare operation object with expected structure.
      *
-     * @return void   
+     * @return void
      *
      **/
 
@@ -110,8 +110,8 @@ class Request
 
     /**
      *
-     * Prepare url and post data to Bancard configured enviroment url. 
-     * If successful sets up redirect url. 
+     * Prepare url and post data to Bancard configured enviroment url.
+     * If successful sets up redirect url.
      * Raise exception on error.
      *
      * @return bool
@@ -126,25 +126,25 @@ class Request
         if (!$this->response_data) {
             throw new \RuntimeException("No response data was found.");
         }
-        
+
         $this->response = $this->response();
-        
+
         if ($this->response->status == "error") {
             throw new \Exception("[" . $this->response->messages[0]->key . "] " . $this->response->messages[0]->dsc);
         }
-        
+
         if(!empty($this->response()->process_id)) {
-            $this->redirect_to = $this->environment . Config::get("redirect_path") . "?process_id=" . $this->response()->process_id;    
+            $this->redirect_to = $this->environment . Config::get("redirect_path") . "?process_id=" . $this->response()->process_id;
         }
-        
+
         return true;
     }
-    
+
     /**
      *
      * Return opeartion object.
      *
-     * @return object   
+     * @return object
      *
      **/
 
@@ -152,12 +152,12 @@ class Request
     {
         return $this->operation;
     }
-    
+
     /**
      *
      * Get json represetation of operation object.
      *
-     * @return json   
+     * @return json
      *
      **/
 
@@ -165,12 +165,12 @@ class Request
     {
         return json_encode($this->operation);
     }
-    
+
     /**
      *
      * Return response object (stdClass).
      *
-     * @return void   
+     * @return void
      *
      **/
 
@@ -178,12 +178,12 @@ class Request
     {
         return json_decode($this->response_data);
     }
-    
+
     /**
      *
      * Post data wrapper.
      *
-     * @return void   
+     * @return void
      *
      **/
 

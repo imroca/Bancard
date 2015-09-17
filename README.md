@@ -1,6 +1,6 @@
-# LlevaUno
+# Bancard
 
-> LlevaUno nace a finales del 2010 siendo el primer sitio web de compras grupales que te permite obtener grandes descuentos y descubrir nuevas formas de disfrutar de Asuncion.
+> Bancard S.A. es una empresa de apoyo al sector financiero, cuyos accionistas y clientes son las más importantes instituciones financieras del país, entre ellas Bancos Internacionales, Regionales y Nacionales, además de Financieras, Cooperativas y Procesadoras de tarjetas de crédito.
 
 ## Cliente
 

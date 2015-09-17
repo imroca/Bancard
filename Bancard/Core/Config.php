@@ -1,6 +1,6 @@
 <?php
 
-namespace LlevaUno\Bancard\Core;
+namespace Bancard\Bancard\Core;
 
 class Config
 {

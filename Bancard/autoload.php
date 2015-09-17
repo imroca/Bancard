@@ -8,7 +8,7 @@
 
 spl_autoload_register(function ($class) {
     // Project-specific namespace prefix.
-    $prefix = 'LlevaUno\\Bancard\\';
+    $prefix = 'Bancard\\Bancard\\';
     // Base directory for the namespace prefix.
     $base_dir = __DIR__ . '/';
     // Does the class use the namespace prefix?

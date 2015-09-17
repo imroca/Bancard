@@ -1,11 +1,11 @@
 <?php
 
-namespace LlevaUno\Bancard\Operations\PreAuthorization;
+namespace Bancard\Bancard\Operations\PreAuthorization;
 
-use \LlevaUno\Bancard\Core\Config;
-use \LlevaUno\Bancard\Core\HTTP;
-use \LlevaUno\Bancard\Core\Environments;
-use \LlevaUno\Bancard\Operations\Operations;
+use \Bancard\Bancard\Core\Config;
+use \Bancard\Bancard\Core\HTTP;
+use \Bancard\Bancard\Core\Environments;
+use \Bancard\Bancard\Operations\Operations;
 
 /**
  *
@@ -13,7 +13,7 @@ use \LlevaUno\Bancard\Operations\Operations;
  *
  **/
 
-class PreAuthorization extends \LlevaUno\Bancard\Core\Request
+class PreAuthorization extends \Bancard\Bancard\Core\Request
 {
 
     /**

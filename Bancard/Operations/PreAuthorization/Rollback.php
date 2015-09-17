@@ -1,11 +1,11 @@
 <?php
 
-namespace LlevaUno\Bancard\Operations\PreAuthorization;
+namespace Bancard\Bancard\Operations\PreAuthorization;
 
-use \LlevaUno\Bancard\Core\Config;
-use \LlevaUno\Bancard\Core\HTTP;
-use \LlevaUno\Bancard\Core\Environments;
-use \LlevaUno\Bancard\Operations\Operations;
+use \Bancard\Bancard\Core\Config;
+use \Bancard\Bancard\Core\HTTP;
+use \Bancard\Bancard\Core\Environments;
+use \Bancard\Bancard\Operations\Operations;
 
 /**
  *
@@ -13,9 +13,9 @@ use \LlevaUno\Bancard\Operations\Operations;
  *
  **/
 
-class Rollback extends \LlevaUno\Bancard\Core\Request
+class Rollback extends \Bancard\Bancard\Core\Request
 {
-    
+
     /**
      *
      * Validates data
@@ -23,13 +23,13 @@ class Rollback extends \LlevaUno\Bancard\Core\Request
      * @return void
      *
      **/
-    
+
     private function validateData(array $data)
     {
         if (count($data) != 1) {
             throw new \InvalidArgumentException("Invalid argument count (1 values are expected).");
         }
-        
+
         if (!array_key_exists('shop_process_id', $data)) {
             throw new \InvalidArgumentException("Shop process id not found [shop_process_id].");
         }
@@ -42,7 +42,7 @@ class Rollback extends \LlevaUno\Bancard\Core\Request
      * @return class
      *
      **/
-     
+
     public static function init(array $data, $environment = Environments::STAGING_URL)
     {
         # Instance.

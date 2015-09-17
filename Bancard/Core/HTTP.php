@@ -1,11 +1,11 @@
 <?php
 
-namespace LlevaUno\Bancard\Core;
+namespace Bancard\Bancard\Core;
 
 /**
  *
  * HTTP class.
- *   
+ *
  **/
 
 class HTTP
@@ -13,8 +13,8 @@ class HTTP
     /**
      *
      * Send POST data to url.
-     *   
-     **/    
+     *
+     **/
     public static function post($url, $data)
     {
         $curl = curl_init($url);
@@ -34,8 +34,8 @@ class HTTP
     /**
      *
      * Read data sent by POST.
-     *   
-     **/    
+     *
+     **/
     public static function read()
     {
         $data = file_get_contents("php://input");

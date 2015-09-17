@@ -1,11 +1,11 @@
 <?php
 
-namespace LlevaUno\Bancard\Core;
+namespace Bancard\Bancard\Core;
 
 /**
  *
  * Token class for construction and handling tokens.
- *   
+ *
  **/
 
 class Token
@@ -16,7 +16,7 @@ class Token
     private $data;
     private $unhashed_string = "";
     private $hash;
-    
+
     /**
      *
      * Set data and hash.
@@ -32,18 +32,18 @@ class Token
         $this->make();
         $this->hash();
     }
-    
+
     /**
      *
      * Get configured private key.
      *
      **/
-     
+
     private function getPrivateKey()
     {
         $this->private_key = Config::get('private_key');
     }
-    
+
     /**
      *
      * Construct token string for given operation type.
@@ -77,7 +77,7 @@ class Token
             $this->unhashed_string .= $this->shop_process_id;
             $this->unhashed_string .= "pre-authorization-abort";
         }
-        
+
         if ($this->type == "pre_authorization_rollback_confirm") {
             $this->unhashed_string .= $this->private_key;
             $this->unhashed_string .= $this->shop_process_id;
@@ -93,7 +93,7 @@ class Token
             $this->unhashed_string .= $this->data['currency'];
         }
     }
-    
+
     /**
      *
      * MD5 hash of constructed hash.
@@ -104,7 +104,7 @@ class Token
     {
         $this->hash = md5($this->unhashed_string);
     }
-    
+
     /**
      *
      * Create and return hash object.
@@ -118,7 +118,7 @@ class Token
         $self = new self($type, $shop_process_id, $data);
         return $self;
     }
-    
+
     /**
      *
      * Return hash string.

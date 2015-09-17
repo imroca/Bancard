@@ -1,11 +1,11 @@
 <?php
 
-namespace LlevaUno\Bancard\Operations\SingleBuy;
+namespace Bancard\Bancard\Operations\SingleBuy;
 
-use \LlevaUno\Bancard\Core\Config;
-use \LlevaUno\Bancard\Core\HTTP;
-use \LlevaUno\Bancard\Core\Environments;
-use \LlevaUno\Bancard\Operations\Operations;
+use \Bancard\Bancard\Core\Config;
+use \Bancard\Bancard\Core\HTTP;
+use \Bancard\Bancard\Core\Environments;
+use \Bancard\Bancard\Operations\Operations;
 
 /**
  *
@@ -13,7 +13,7 @@ use \LlevaUno\Bancard\Operations\Operations;
  *
  **/
 
-class SingleBuy extends \LlevaUno\Bancard\Core\Request
+class SingleBuy extends \Bancard\Bancard\Core\Request
 {
 
     /**
@@ -51,7 +51,7 @@ class SingleBuy extends \LlevaUno\Bancard\Core\Request
             throw new \InvalidArgumentException("Additional data argument was not found [additional_data].");
         }
     }
-    
+
     /**
      *
      * Initialize object
@@ -59,7 +59,7 @@ class SingleBuy extends \LlevaUno\Bancard\Core\Request
      * @return class
      *
      **/
-     
+
     public static function init(array $data, $environment = Environments::STAGING_URL)
     {
         # Instance.

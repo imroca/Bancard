@@ -1,11 +1,11 @@
 <?php
 
-namespace LlevaUno\Bancard\Operations\PreAuthorization\Confirm;
+namespace Bancard\Bancard\Operations\PreAuthorization\Confirm;
 
-use \LlevaUno\Bancard\Core\Config;
-use \LlevaUno\Bancard\Core\HTTP;
-use \LlevaUno\Bancard\Core\Environments;
-use \LlevaUno\Bancard\Operations\Operations;
+use \Bancard\Bancard\Core\Config;
+use \Bancard\Bancard\Core\HTTP;
+use \Bancard\Bancard\Core\Environments;
+use \Bancard\Bancard\Operations\Operations;
 
 /**
  *
@@ -13,9 +13,9 @@ use \LlevaUno\Bancard\Operations\Operations;
  *
  **/
 
-class Confirm extends \LlevaUno\Bancard\Core\Request
+class Confirm extends \Bancard\Bancard\Core\Request
 {
-    
+
     /**
      *
      * Validates data
@@ -23,18 +23,18 @@ class Confirm extends \LlevaUno\Bancard\Core\Request
      * @return void
      *
      **/
-    
+
     private function validateData(array $data)
     {
         if (count($data) != 1) {
             throw new \InvalidArgumentException("Invalid argument count (5 values are expected).");
         }
-        
+
         if (!array_key_exists('shop_process_id', $data)) {
             throw new \InvalidArgumentException("Shop process id not found [shop_process_id].");
         }
     }
-    
+
     /**
      *
      * Initialize object
