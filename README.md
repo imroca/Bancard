@@ -23,7 +23,7 @@ require_once(__DIR__ . '/../Bancard/autoload.php');
 $redis = new Redis();
 $redis->pconnect('127.0.0.1', 6379);
 
-$id = $redis->incr("LlevaUno:Bancard:shop_process_id");
+$id = $redis->incr("Bancard:Bancard:shop_process_id");
 
 $data = [
     'shop_process_id'   => $id,
@@ -34,7 +34,7 @@ $data = [
 ];
 
 try {
-    $request = LlevaUno\Bancard\Operations\PreAuthorization\PreAuthorization::init($data)->send();
+    $request = Bancard\Bancard\Operations\PreAuthorization\PreAuthorization::init($data)->send();
 } catch (Exception $e) {
     die($e->getMessage());
 }
