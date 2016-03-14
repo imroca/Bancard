@@ -39,7 +39,7 @@ El cliente esta hecho (o trata al menos) siguiendo las recomendaciones de http:/
 
 # Ejemplo
 
-A pedido del público.
+A pedido del público :+1: un ejemplo.
 
 ### Ejemplo para una operación de SingleBuy
 
@@ -178,17 +178,17 @@ exit;
 ## Integraciones
 
 * Llevauno (solo sandbox para las operaciones de pre autorización)
-* Woocommerce, plugin desarrollado para integrar pagos de bancard utilizando la operación SingleBuy. El plugin está a la venta :)
+* Woocommerce, plugin desarrollado para integrar pagos de bancard utilizando la operación SingleBuy. El plugin está a la venta. :stuck_out_tongue_winking_eye:
 
-## Pull Request
+## Pull Request & Contribuciones.
 
-Los PR son bienvenidos.
+Los PR son bienvenidos, ademas de las cervezas, asados, picadas y/o similares.
 
 ## Developer
 
-Ignacio Rojas
+:vulcan: Ignacio Rojas :sunglasses:
 
-* La completamente inútil web: [http://imroca.com]
+* La completamente inútil web: http://imroca.com
 * Email <<imroca@gmail.com>>
 * Twitter: [@iMalignus](https://twitter.com/iMalignus/)
 
