@@ -10,11 +10,13 @@ namespace Bancard\Bancard\Operations;
 
 class Operations
 {
-    // Single buy operations.
+    // Single buy operations url paths.
     const SINGLE_BUY_URL = "/vpos/api/0.3/single_buy";
+    const SINGLE_BUY_PAYMENTS_URL = "/payment/single_buy";
     const SINGLE_BUY_ROLLBACK_URL = "/vpos/api/0.3/single_buy/rollback";
-    // Preauthorization operations.
+    // Preauthorization operations url paths.
     const PREAUTHORIZATION_URL = "/vpos/api/0.3/preauthorizations";
+    const PREAUTHORIZATION_PAYMENTS_URL = "/payment/preauthorization";
     const PREAUTHORIZATION_ROLLBACK_URL = "/vpos/api/0.3/preauthorizations/rollback";
     const PREAUTHORIZATION_CONFIRM_URL = "/vpos/api/0.3/preauthorizations/confirm";
     const PREAUTHORIZATION_CANCEL_URL = "/vpos/api/0.3/preauthorizations/abort";

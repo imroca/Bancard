@@ -26,9 +26,9 @@ class Token
     private function __construct($type, $shop_process_id, $data)
     {
         $this->type = $type;
-        $this->getPrivateKey();
-        $this->shop_process_id = $shop_process_id;
         $this->data = $data;
+        $this->shop_process_id = $shop_process_id;
+        $this->getPrivateKey();
         $this->make();
         $this->hash();
     }
@@ -41,7 +41,13 @@ class Token
 
     private function getPrivateKey()
     {
+        if (!empty($this->data['private_key'])) {
+            $this->private_key = $this->data['private_key'];
+        }
+        if (empty($this->private_key)) {
         $this->private_key = Config::get('private_key');
+        }
+        return $this->private_key;
     }
 
     /**

@@ -1,6 +1,6 @@
 <?php
 
-namespace Bancard\Bancard\Operations\PreAuthorization;
+namespace Bancard\Bancard\Operations\SingleBuy;
 
 use \Bancard\Bancard\Core\Config;
 use \Bancard\Bancard\Core\HTTP;
@@ -26,7 +26,7 @@ class Rollback extends \Bancard\Bancard\Core\Request
 
     private function validateData(array $data)
     {
-        if (count($data) != 1) {
+        if (count($data) < 1) {
             throw new \InvalidArgumentException("Invalid argument count (1 values are expected).");
         }
 
@@ -51,7 +51,7 @@ class Rollback extends \Bancard\Bancard\Core\Request
         $self->validateData($data);
         # Set Enviroment.
         $self->environment = $environment;
-        $self->path = Operations::PREAUTHORIZATION_ROLLBACK_URL;
+        $self->path = Operations::SINGLE_BUY_ROLLBACK_URL;
         # Attach data.
         foreach ($data as $key => $value) {
             $self->addData($key, $value);

@@ -20,6 +20,7 @@ class Request
 
     protected $environment;
     protected $path;
+    protected $redirect_path;
 
     public $url;
 
@@ -31,18 +32,6 @@ class Request
 
     public $response;
 
-    /**
-     *
-     * Setup.
-     *
-     * @return void
-     *
-     **/
-
-    protected function __construct()
-    {
-        $this->getPublicKey();
-    }
     /**
      *
      * Get valid token for given operation type.
@@ -72,7 +61,13 @@ class Request
 
     private function getPublicKey()
     {
-        $this->public_key = Config::get("public_key");
+        if (!empty($this->data['public_key'])) {
+            $this->public_key = $this->data['public_key'];
+        }
+        if (empty($this->public_key)) {
+            $this->public_key = Config::get('public_key');
+        }
+        return $this->public_key;
     }
 
     /**
@@ -99,11 +94,14 @@ class Request
 
     protected function makeOperationObject()
     {
-        $this->operation['public_key'] = $this->public_key;
+        $this->operation['public_key'] = $this->getPublicKey();
         $this->operation['operation'] = array();
         $this->operation['operation']['token'] = $this->token->get();
         $this->operation['operation']['shop_process_id'] = $this->shop_process_id;
         foreach ($this->data as $key => $value) {
+            if ($key == "public_key" or $key == "private_key") {
+                continue;
+            }
             $this->operation['operation'][$key] = $value;
         }
     }
@@ -133,8 +131,8 @@ class Request
             throw new \Exception("[" . $this->response->messages[0]->key . "] " . $this->response->messages[0]->dsc);
         }
 
-        if(!empty($this->response()->process_id)) {
-            $this->redirect_to = $this->environment . Config::get("redirect_path") . "?process_id=" . $this->response()->process_id;
+        if (!empty($this->response()->process_id)) {
+            $this->redirect_to = $this->environment . $this->redirect_path . "?process_id=" . $this->response()->process_id;
         }
 
         return true;

@@ -27,8 +27,8 @@ class PreAuthorization extends \Bancard\Bancard\Core\Request
     private function validateData(array $data)
     {
 
-        if (count($data) != 5) {
-            throw new \InvalidArgumentException("Invalid argument count (5 values are expected).");
+        if (count($data) < 5) {
+            throw new \InvalidArgumentException("Invalid argument count (al least 5 values are expected).");
         }
 
         if (!array_key_exists('shop_process_id', $data)) {
@@ -60,7 +60,7 @@ class PreAuthorization extends \Bancard\Bancard\Core\Request
      *
      **/
 
-    public static function init(array $data, array $option = array(), $environment = Environments::STAGING_URL)
+    public static function init(array $data, $environment = Environments::STAGING_URL)
     {
         # Instance.
         $self = new self;
@@ -70,17 +70,13 @@ class PreAuthorization extends \Bancard\Bancard\Core\Request
         # Set Enviroment.
         $self->environment = $environment;
         $self->path = Operations::PREAUTHORIZATION_URL;
+        $self->redirect_path  = Operations::PREAUTHORIZATION_PAYMENTS_URL;
 
         # Configure extra data.
-        if (isset($option['return_url']) and $option['return_url'] !== "") {
-            $data['return_url'] = $option['return_url'];
-        } else {
+        if (empty($data['return_url'])) {
             $data['return_url'] = Config::get('return_url');
         }
-
-        if (isset($option['cancel_url']) and $option['cancel_url'] !== "") {
-            $data['cancel_url'] = $option['cancel_url'];
-        } else {
+        if (empty($data['cancel_url'])) {
             $data['cancel_url'] = Config::get('cancel_url');
         }
 

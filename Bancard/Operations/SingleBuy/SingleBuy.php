@@ -27,8 +27,8 @@ class SingleBuy extends \Bancard\Bancard\Core\Request
     private function validateData(array $data)
     {
 
-        if (count($data) != 5) {
-            throw new \InvalidArgumentException("Invalid argument count (5 values are expected).");
+        if (count($data) < 5) {
+            throw new \InvalidArgumentException("Invalid argument count (at least 5 values are expected).");
         }
 
         if (!array_key_exists('shop_process_id', $data)) {
@@ -64,14 +64,23 @@ class SingleBuy extends \Bancard\Bancard\Core\Request
     {
         # Instance.
         $self = new self;
+
         # Validate data.
         $self->validateData($data);
+
         # Set Enviroment.
         $self->environment = $environment;
-        $self->path = Operations::PREAUTHORIZATION_URL;
+        $self->path = Operations::SINGLE_BUY_URL;
+        $self->redirect_path = Operations::SINGLE_BUY_PAYMENTS_URL;
+
         # Configure extra data.
-        $data['return_url'] = Config::get('return_url');
-        $data['cancel_url'] = Config::get('cancel_url');
+        if (empty($data['return_url'])) {
+            $data['return_url'] = Config::get('return_url');
+        }
+        if (empty($data['cancel_url'])) {
+            $data['cancel_url'] = Config::get('cancel_url');
+        }
+
         # Attach data.
         foreach ($data as $key => $value) {
             $self->addData($key, $value);
