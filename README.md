@@ -186,7 +186,7 @@ Los PR son bienvenidos, ademas de las cervezas, asados, picadas y/o similares.
 
 ## Developer
 
-:vulcan: Ignacio Rojas :sunglasses:
+Ignacio Rojas :sunglasses:
 
 * La completamente inútil web: http://imroca.com
 * Email <<imroca@gmail.com>>
