@@ -23,9 +23,9 @@ En conclusión solo se encarga de cosumir los servicios de bancard y la persiste
 
 El cliente esta hecho (o trata al menos) siguiendo las recomendaciones de http://www.php-fig.org/psr/ especificamente:
 
-PSR-1
-PSR-2
-PSR-4
+* PSR-1
+* PSR-2
+* PSR-4
 
 ## Operaciones
 
@@ -37,7 +37,9 @@ PSR-4
 * Preautorizacion abort.
 * Preautorizacion confirm rollback.
 
-## Ejemplo
+# Ejemplo
+
+A pedido del público.
 
 ### Ejemplo para una operación de SingleBuy
 
@@ -132,9 +134,9 @@ exit;
 
 ```
 
-4) Bancard redirige a la página que configuramos cono return_url.
+4) Bancard redirige a la página que configuramos en `return_url`.
 
-5) Bancard en el caso que un usuario haya dado click en el boton de cancelar, retorna al cancel_url, ningun misterio ahi.
+5) Bancard en el caso que un usuario haya dado click en el boton de cancelar, retorna al cancel_url, ningun misterio ahí.
 
 6) Rollbacks.
 
@@ -176,7 +178,7 @@ exit;
 ## Integraciones
 
 * Llevauno (solo sandbox para las operaciones de pre autorización)
-* Woocommerce, plugin desarrollado para integrar pagos de bancard utilizando la operación singlebuy.
+* Woocommerce, plugin desarrollado para integrar pagos de bancard utilizando la operación SingleBuy. El plugin está a la venta :)
 
 ## Pull Request
 
@@ -184,6 +186,10 @@ Los PR son bienvenidos.
 
 ## Developer
 
-* Ignacio Rojas <imroca@gmail.com> Twitter: @iMalignus
+Ignacio Rojas
+
+* La completamente inútil web: [http://imroca.com]
+* Email <<imroca@gmail.com>>
+* Twitter: [@iMalignus](https://twitter.com/iMalignus/)
 
 Cualquier duda a las ordenes.
