@@ -190,6 +190,7 @@ Ignacio Rojas :sunglasses:
 
 * La completamente inútil web: http://imroca.com
 * Email <<imroca@gmail.com>>
+* [LinkedIn](https://www.linkedin.com/in/imroca)
 * Twitter: [@iMalignus](https://twitter.com/iMalignus/)
 
 Cualquier duda a las ordenes.
