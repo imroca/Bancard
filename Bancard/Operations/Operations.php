@@ -14,6 +14,7 @@ class Operations
     const SINGLE_BUY_URL = "/vpos/api/0.3/single_buy";
     const SINGLE_BUY_PAYMENTS_URL = "/payment/single_buy";
     const SINGLE_BUY_ROLLBACK_URL = "/vpos/api/0.3/single_buy/rollback";
+    const SINGLE_BUY_CONFIRM_URL = "/vpos/api/0.3/single_buy/confirmations";
     // Preauthorization operations url paths.
     const PREAUTHORIZATION_URL = "/vpos/api/0.3/preauthorizations";
     const PREAUTHORIZATION_PAYMENTS_URL = "/payment/preauthorization";

@@ -72,6 +72,12 @@ class Token
             $this->unhashed_string .= "0.00";
         }
 
+        if ($this->type == "single_buy_confirm") {
+            $this->unhashed_string .= $this->private_key;
+            $this->unhashed_string .= $this->shop_process_id;
+            $this->unhashed_string .= "get_confirmation";
+        }
+
         if ($this->type == "pre_authorization_confirm") {
             $this->unhashed_string .= $this->private_key;
             $this->unhashed_string .= $this->shop_process_id;

@@ -64,7 +64,6 @@ class SingleBuy extends \Bancard\Bancard\Core\Request
     {
         # Instance.
         $self = new self;
-
         # Validate data.
         $self->validateData($data);
 

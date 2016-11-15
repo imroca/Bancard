@@ -27,8 +27,8 @@ class PreAuthorization extends \Bancard\Bancard\Core\Request
     private function validateData(array $data)
     {
 
-        if (count($data) < 5) {
-            throw new \InvalidArgumentException("Invalid argument count (al least 5 values are expected).");
+        if (count($data) != 5) {
+            throw new \InvalidArgumentException("Invalid argument count (5 values are expected).");
         }
 
         if (!array_key_exists('shop_process_id', $data)) {
