@@ -26,7 +26,7 @@ class Confirm extends \Bancard\Bancard\Core\Request
 
     private function validateData(array $data)
     {
-        if (count($data) <= 1) {
+        if (count($data) < 1) {
             throw new \InvalidArgumentException("Invalid argument count.");
         }
 
