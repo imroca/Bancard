@@ -179,7 +179,7 @@ exit;
 ## Integraciones
 
 * Llevauno (solo sandbox para las operaciones de pre autorización)
-* ~~Woocommerce, plugin desarrollado para integrar pagos de bancard utilizando la operación SingleBuy. El plugin está a la venta. :stuck_out_tongue_winking_eye:~~0
+* ~~Woocommerce, plugin desarrollado para integrar pagos de bancard utilizando la operación SingleBuy. El plugin está a la venta. :stuck_out_tongue_winking_eye:~~
 
 El plugin de woocomerce utiliza esta librería como dependencia y como mencioné anteriormente este cliente es para la v1 de la pasarela de Bancard. La v2 tiene una arquitectura completamente diferente por lo que tristemente les recomiendo que busquen alternativas a este repositorio.
 
