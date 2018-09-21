@@ -104,6 +104,54 @@ class Token
             $this->unhashed_string .= $this->data['amount'];
             $this->unhashed_string .= $this->data['currency'];
         }
+
+        if ($this->type == "multi_buy") {
+            $this->unhashed_string .= $this->private_key;
+            $this->unhashed_string .= $this->shop_process_id;
+            $this->unhashed_string .= $this->data['total_items'];
+            $this->unhashed_string .= $this->data['total_usd'];
+            $this->unhashed_string .= $this->data['total_pyg'];
+        }
+
+        if ($this->type == "multi_buy_confirm") {
+            $this->unhashed_string .= $this->private_key;
+            $this->unhashed_string .= $this->shop_process_id;
+            $this->unhashed_string .= "confirm";
+            $this->unhashed_string .= $this->data['total_items'];
+            $this->unhashed_string .= $this->data['amount_in_us'];
+            $this->unhashed_string .= $this->data['amount_in_gs'];
+        }
+
+        if ($this->type == "multi_buy_get_confirmation") {
+            $this->unhashed_string .= $this->private_key;
+            $this->unhashed_string .= $this->shop_process_id;
+            $this->unhashed_string .= "get_confirmation";
+            $this->unhashed_string .= $this->data['total_items'];
+            $this->unhashed_string .= $this->data['amount_in_us'];
+            $this->unhashed_string .= $this->data['amount_in_gs'];
+        }
+
+        if ($this->type == "multi_buy_get_confirmation") {
+            $this->unhashed_string .= $this->private_key;
+            $this->unhashed_string .= $this->shop_process_id;
+            $this->unhashed_string .= "rollback";
+            $this->unhashed_string .= "0";
+            $this->unhashed_string .= "0,00";
+            $this->unhashed_string .= "0,00";
+        }
+
+        if ($this->type == "user_validation") {
+            $this->unhashed_string .= $this->private_key;
+            $this->unhashed_string .= $this->shop_process_id;
+            $this->unhashed_string .= "user_validation";
+        }
+
+        if ($this->type == "user_validation_respond") {
+            $this->unhashed_string .= $this->private_key;
+            $this->unhashed_string .= $this->shop_process_id;
+            $this->unhashed_string .= "user_validation_respond";
+        }
+
     }
 
     /**

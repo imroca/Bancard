@@ -22,4 +22,10 @@ class Operations
     const PREAUTHORIZATION_CONFIRM_URL = "/vpos/api/0.3/preauthorizations/confirm";
     const PREAUTHORIZATION_CANCEL_URL = "/vpos/api/0.3/preauthorizations/abort";
     const PREAUTHORIZATION_CONFIRM_ROLLBACK_URL = "/vpos/api/0.3/preauthorizations/rollback-confirm";
+    // Single buy operations url paths.
+    const MULTI_BUY_URL = "/vpos/api/0.3/multi_buy";
+    const MULTI_BUY_PAYMENTS_URL = "/payment/multi_buy";
+    const MULTI_BUY_ROLLBACK_URL = "/vpos/api/0.3/multi_buy/rollback";
+    const MULTI_BUY_CONFIRM_URL = "/vpos/api/0.3/multi_buy/confirmations";
+    const MULTI_BUY_USER_VERIFICATION = "/vpos/api/0.3/verification/credit_card";
 }
