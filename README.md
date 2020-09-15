@@ -1,3 +1,6 @@
+
+# Esta librería es un buen comienzo pero no incluye toda la funcionalidad necesaria para certificar para la version del VPOS 2.0
+
 # Bancard
 
 > Bancard S.A. es una empresa de apoyo al sector financiero, cuyos accionistas y clientes son las más importantes instituciones financieras del país, entre ellas Bancos Internacionales, Regionales y Nacionales, además de Financieras, Cooperativas y Procesadoras de tarjetas de crédito.
